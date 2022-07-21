@@ -11,16 +11,14 @@ export default defineStore({
     id: 'gameStore',
     state: () => ({ games: [], isGameCreating: false } as GameState),
     actions: {
-        fetchCreateGame (game: IGameCreatePayload) {
+        fetchCreateGame (game: IGameCreatePayload): Promise<any> {
             this.isGameCreating = true
-            gamesApi.createGame(game).finally(() => this.isGameCreating = false)
+            return gamesApi.createGame(game).finally(() => this.isGameCreating = false)
         },
-        fetchGames () {
-            gamesApi.gameList().then((response) => {
-                this.games = response
-                console.log(this.games)
+        fetchGames (): Promise<any> {
+            return gamesApi.gameList().then((games) => {
+                this.games = games
             })
-            // console.log(this.games)
         }
     }
 })

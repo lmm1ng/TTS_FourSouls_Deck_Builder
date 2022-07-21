@@ -4,7 +4,7 @@ export interface IGame {
     description: string,
     image: string,
     createdAt: string | null,
-    updatedAt?: string | null,
+    updatedAt: string | null,
 }
 
 export interface IGameCreatePayload {
